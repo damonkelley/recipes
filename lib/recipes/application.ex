@@ -8,7 +8,7 @@ defmodule Recipes.Application do
       Plug.Cowboy.child_spec(
         scheme: :http,
         plug: Recipes.Web,
-        options: [port: 4000]
+        options: [port: Application.get_env(:recipes, :port)]
       ),
       Recipes.Ecto.Repo
     ]
