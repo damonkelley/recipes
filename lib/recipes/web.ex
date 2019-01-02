@@ -11,16 +11,12 @@ defmodule Recipes.Web do
   end
 
   get "/random" do
-    body = %{
-      data: %{
-        name: "Test recipe",
-        href: "http://example.com/recipe1"
-      }
-    }
+    body =
+      Recipes.random(repo: Recipes.Repo)
+      |> view()
+      |> Jason.encode!()
 
-    result = Recipes.random(repo: Recipes.Repo)
-
-    send_resp(conn, 200, result |> view() |> Jason.encode!())
+    send_resp(conn, 200, body)
   end
 
   post "/recipes" do
