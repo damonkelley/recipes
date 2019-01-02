@@ -1,6 +1,7 @@
 defmodule Recipes.Web do
   use Plug.Router
 
+  plug(Plug.Logger, log: :info)
   plug(:match)
   plug(:dispatch)
 
