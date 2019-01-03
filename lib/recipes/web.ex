@@ -2,6 +2,7 @@ defmodule Recipes.Web do
   use Plug.Router
 
   plug(Plug.Logger, log: :info)
+  plug(Plug.Parsers, parsers: [:urlencoded, :json], json_decoder: Jason)
   plug(:match)
   plug(:dispatch)
 

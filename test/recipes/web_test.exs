@@ -49,6 +49,7 @@ defmodule Recipes.WebTest do
     test "a recipe for #{name} can be added " do
       conn =
         conn(:post, "/recipes", %{name: unquote(name), href: unquote(href)})
+        |> put_req_header("content-type", "application/json")
         |> Web.call(@opts)
 
       assert conn.resp_body == ""
